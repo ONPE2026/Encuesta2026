@@ -584,7 +584,7 @@ selRegion.addEventListener('change', () => {
   if (ubigeoCache[archivo]) { poblarProvincias(ubigeoCache[archivo]); return; }
 
   // Carga directo desde el repositorio GitHub Pages (ruta relativa)
-  fetch('./ubigeo/' + archivo + '.json')
+  fetch('./ubigeo/' + encodeURIComponent(archivo) + '.json')
     .then(r => r.ok ? r.json() : Promise.reject(r.status))
     .then(data => { ubigeoCache[archivo] = data; poblarProvincias(data); })
     .catch(() => { selProvincia.innerHTML = '<option value="">Error al cargar</option>'; });
