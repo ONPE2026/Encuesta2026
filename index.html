@@ -268,6 +268,19 @@
 <body>
 
 <!-- ► Reemplaza banner.jpg con la URL real de tu imagen de cabecera -->
+
+<!-- MENSAJE: encuesta cerrada -->
+<div id="msgCerrada" style="display:none;max-width:600px;margin:60px auto;padding:32px;background:#EBF4FF;border:1px solid #88BFE5;border-radius:10px;text-align:center;font-family:Poppins,sans-serif;">
+  <h2 style="color:#003770;margin-bottom:12px;">Encuesta cerrada</h2>
+  <p style="color:#333;">El período de respuesta ha concluido. Agradecemos su participación.</p>
+</div>
+
+<!-- MENSAJE: ya respondió -->
+<div id="msgYaRespondio" style="display:none;max-width:600px;margin:60px auto;padding:32px;background:#EBF4FF;border:1px solid #88BFE5;border-radius:10px;text-align:center;font-family:Poppins,sans-serif;">
+  <h2 style="color:#003770;margin-bottom:12px;">Ya registró su respuesta</h2>
+  <p style="color:#333;">Este dispositivo ya participó en la encuesta. Solo se permite una respuesta por dispositivo.</p>
+</div>
+
 <header>
   <div class="header-titulo">Encuesta de Evaluación · Segunda Vuelta 2026</div>
   <div class="header-subtitulo">ONPE — Oficina Nacional de Procesos Electorales</div>
@@ -466,13 +479,13 @@
               <option value="">— Seleccionar —</option>
             </select>
           </div>
-          <div class="geo-group">
+          <div class="geo-group" id="grupo-provincia">
             <label for="sel-provincia">Provincia</label>
             <select id="sel-provincia" name="provincia" disabled>
               <option value="">— Seleccionar —</option>
             </select>
           </div>
-          <div class="geo-group">
+          <div class="geo-group" id="grupo-distrito">
             <label for="sel-distrito">Distrito</label>
             <select id="sel-distrito" name="distrito" disabled>
               <option value="">— Seleccionar —</option>
@@ -520,6 +533,7 @@
 // en la carpeta /ubigeo/ del repositorio
 // ═══════════════════════════════════════════════
 const REGIONES = [
+  {nombre:"EXTRANJERO",    archivo:null},
   {nombre:"AMAZONAS",      archivo:"AMAZONAS"},
   {nombre:"ÁNCASH",        archivo:"ANCASH"},
   {nombre:"APURÍMAC",      archivo:"APURIMAC"},
@@ -552,7 +566,32 @@ const REGIONES = [
 // ═══════════════════════════════════════════════
 // ► REEMPLAZA ESTA URL con la de tu implementación de Apps Script (doPost)
 // Apps Script → Implementar → Nueva implementación → Aplicación web → Copiar URL
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_6TaO6RcIzrSczKWLsBa-BUt4D5IVAeU0q1ssE_kXbLt_mq8bKchMpcncagaW-XoS/exec';
+// ═══════════════════════════════════════════════════════════
+// CONFIGURACIÓN DE CIERRE Y CONTROL DE VERSIÓN
+// ═══════════════════════════════════════════════════════════
+
+// #AQUI SE CAMBIA HORA — fecha/hora de cierre de la encuesta (hora de Perú UTC-5)
+const FECHA_CIERRE = new Date('2026-07-16T04:59:00Z'); // 15 jul 2026 11:59 PM PET
+
+// #AQUI SE RESETEAN LAS VERSIONES PARA VOLVER A INTENTAR ENVIAR
+// Cambia 'v1' a 'v2', 'v3', etc. para permitir que dispositivos que ya respondieron vuelvan a intentarlo
+const STORAGE_KEY = 'onpe_sv2026_v1';
+
+// ── Verificar cierre ──
+if (new Date() > FECHA_CIERRE) {
+  document.getElementById('msgCerrada').style.display = 'block';
+  document.querySelector('.container').style.display  = 'none';
+  document.querySelector('header').style.display      = 'none';
+}
+
+// ── Verificar si ya respondió este dispositivo ──
+if (localStorage.getItem(STORAGE_KEY)) {
+  document.getElementById('msgYaRespondio').style.display = 'block';
+  document.querySelector('.container').style.display      = 'none';
+  document.querySelector('header').style.display          = 'none';
+}
+
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRDobHbbxvd3-OuDMTCHvSd8Jls-01p_y96zFpknx7woPuglzJc4zDNJwlSykpfGVo/exec';
 
 const selRegion   = document.getElementById('sel-region');
 const selProvincia= document.getElementById('sel-provincia');
@@ -566,7 +605,7 @@ REGIONES.forEach(r => selRegion.add(new Option(r.nombre, r.archivo)));
 const ubigeoCache = {};
 
 selRegion.addEventListener('change', () => {
-  selProvincia.innerHTML = '<option value="">Cargando provincias…</option>';
+  selProvincia.innerHTML = '<option value="">— Seleccionar —</option>';
   selProvincia.disabled  = true;
   selDistrito.innerHTML  = '<option value="">— Seleccionar —</option>';
   selDistrito.disabled   = true;
@@ -574,7 +613,15 @@ selRegion.addEventListener('change', () => {
   selDistrito._data      = null;
 
   const archivo = selRegion.value;
-  if (!archivo) { selProvincia.innerHTML = '<option value="">— Seleccionar —</option>'; return; }
+
+  // EXTRANJERO: ocultar provincia y distrito
+  const esExtranjero = (selRegion.options[selRegion.selectedIndex]?.text === 'EXTRANJERO');
+  document.getElementById('grupo-provincia').style.display = esExtranjero ? 'none' : '';
+  document.getElementById('grupo-distrito').style.display  = esExtranjero ? 'none' : '';
+  selProvincia.required = !esExtranjero;
+  selDistrito.required  = !esExtranjero;
+
+  if (!archivo || esExtranjero) return;
 
   if (ubigeoCache[archivo]) { poblarProvincias(ubigeoCache[archivo]); return; }
 
@@ -700,8 +747,10 @@ document.getElementById('encuesta').addEventListener('submit', function(e){
   if (!radio('calificacionOrg')){ showErr('Por favor responda la pregunta 11.'); return; }
   if (!radio('grupoEtario'))    { showErr('Por favor indique su grupo etario (pregunta 12).'); return; }
   if (!radio('sexo'))           { showErr('Por favor indique su sexo (pregunta 13).'); return; }
-  if (!selRegion.value || !selProvincia.value || !selDistrito.value){
-    showErr('Por favor complete su región, provincia y distrito.'); return;
+  const esExtranjeroVal = (selRegion.options[selRegion.selectedIndex]?.text === 'EXTRANJERO');
+  if (!selRegion.value){ showErr('Por favor indique su región.'); return; }
+  if (!esExtranjeroVal && (!selProvincia.value || !selDistrito.value)){
+    showErr('Por favor complete su provincia y distrito.'); return;
   }
 
   const getChecks = name => [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(x=>x.value);
@@ -727,6 +776,7 @@ document.getElementById('encuesta').addEventListener('submit', function(e){
   };
 
   // ► Mostrar éxito inmediatamente (no esperar al servidor)
+  localStorage.setItem(STORAGE_KEY, '1'); // marcar dispositivo como ya respondido
   document.getElementById('encuesta').style.display = 'none';
   document.getElementById('msgExito').style.display  = 'block';
   window.scrollTo({top: 0, behavior: 'smooth'});
