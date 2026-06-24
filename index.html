@@ -656,6 +656,24 @@ document.querySelectorAll('input[name="seInformo"]').forEach(r => r.addEventList
 }));
 
 // ═══════════════════════════════════════════════
+// EXCLUSIVIDAD: "Nada en particular" en P7
+// ═══════════════════════════════════════════════
+document.querySelectorAll('input[name="recuerdaCampana"]').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const nada = document.querySelector('input[name="recuerdaCampana"][value="Nada en particular"]');
+    if (cb.value === 'Nada en particular' && cb.checked) {
+      // Marcar "Nada" → desmarcar todas las demás
+      document.querySelectorAll('input[name="recuerdaCampana"]').forEach(x => {
+        if (x !== cb) x.checked = false;
+      });
+    } else if (cb.checked && nada) {
+      // Marcar cualquier otra → desmarcar "Nada"
+      nada.checked = false;
+    }
+  });
+});
+
+// ═══════════════════════════════════════════════
 // ENVÍO — UI OPTIMISTA
 // La página de éxito se muestra al instante.
 // El guardado ocurre en segundo plano.
@@ -665,12 +683,30 @@ document.getElementById('encuesta').addEventListener('submit', function(e){
   const err = document.getElementById('msgError');
   err.style.display = 'none';
 
-  // Validaciones
-  if (!radio('voto'))       { err.textContent='Por favor responda la pregunta 1.'; err.style.display='block'; return; }
-  if (!radio('grupoEtario')){ err.textContent='Por favor indique su grupo etario.'; err.style.display='block'; return; }
-  if (!radio('sexo'))       { err.textContent='Por favor indique su sexo.'; err.style.display='block'; return; }
+  // ── Validaciones completas ──
+  function visible(id){ const el=document.getElementById(id); return el && !el.classList.contains('hidden'); }
+  function showErr(msg){ err.textContent=msg; err.style.display='block'; window.scrollTo({top:err.offsetTop-20,behavior:'smooth'}); }
+
+  if (!radio('voto'))       { showErr('Por favor responda la pregunta 1.'); return; }
+  if (visible('p2') && !radio('inconveniente'))
+                            { showErr('Por favor responda la pregunta 2.'); return; }
+  if (visible('p3') && !document.querySelector('input[name="inconvenienteTipo"]:checked'))
+                            { showErr('Por favor responda la pregunta 3.'); return; }
+  if (!radio('seInformo'))  { showErr('Por favor responda la pregunta 4.'); return; }
+  if (visible('p5') && !document.querySelector('input[name="medios"]:checked'))
+                            { showErr('Por favor responda la pregunta 5.'); return; }
+  if (visible('bloque3')) {
+    if (!radio('claridadCampana'))  { showErr('Por favor responda la pregunta 6.'); return; }
+    if (!document.querySelector('input[name="recuerdaCampana"]:checked'))
+                                    { showErr('Por favor responda la pregunta 7.'); return; }
+    if (!radio('campMasTiempo'))    { showErr('Por favor responda la pregunta 8.'); return; }
+  }
+  if (!radio('opinionONPE'))    { showErr('Por favor responda la pregunta 10.'); return; }
+  if (!radio('calificacionOrg')){ showErr('Por favor responda la pregunta 11.'); return; }
+  if (!radio('grupoEtario'))    { showErr('Por favor indique su grupo etario (pregunta 12).'); return; }
+  if (!radio('sexo'))           { showErr('Por favor indique su sexo (pregunta 13).'); return; }
   if (!selRegion.value || !selProvincia.value || !selDistrito.value){
-    err.textContent='Por favor complete su región, provincia y distrito.'; err.style.display='block'; return;
+    showErr('Por favor complete su región, provincia y distrito.'); return;
   }
 
   const getChecks = name => [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(x=>x.value);
