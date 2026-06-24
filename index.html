@@ -495,10 +495,7 @@
   <div class="msg-exito" id="msgExito">
     <h2>Sus respuestas han sido registradas correctamente.</h2>
     <p style="margin-bottom:16px">Gracias por participar en esta encuesta.<br>Su opinión contribuye a mejorar los procesos de difusión de la ONPE.</p>
-    <p style="font-size:0.88rem;color:#2971B9;border-top:1px solid #88BFE5;padding-top:14px;margin-top:4px;">
-      Si tiene alguna consulta o pregunta, realícela <strong>antes de cerrar esta página</strong>.<br>
-      Una vez cerrada, no podrá recuperar sus respuestas.
-    </p>
+
   </div>
 
 <footer class="footer-strip">
@@ -555,7 +552,7 @@ const REGIONES = [
 // ═══════════════════════════════════════════════
 // ► REEMPLAZA ESTA URL con la de tu implementación de Apps Script (doPost)
 // Apps Script → Implementar → Nueva implementación → Aplicación web → Copiar URL
-const APPS_SCRIPT_URL = 'https://script.google.com/a/macros/pucp.pe/s/AKfycbz_6TaO6RcIzrSczKWLsBa-BUt4D5IVAeU0q1ssE_kXbLt_mq8bKchMpcncagaW-XoS/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz_6TaO6RcIzrSczKWLsBa-BUt4D5IVAeU0q1ssE_kXbLt_mq8bKchMpcncagaW-XoS/exec';
 
 const selRegion   = document.getElementById('sel-region');
 const selProvincia= document.getElementById('sel-provincia');
@@ -735,11 +732,13 @@ document.getElementById('encuesta').addEventListener('submit', function(e){
   window.scrollTo({top: 0, behavior: 'smooth'});
 
   // ► Guardar en segundo plano vía fetch → Apps Script doPost
+  // Codificamos como form-urlencoded: sobrevive la redirección interna de Apps Script
+  // Apps Script lo lee por e.parameter.data
   fetch(APPS_SCRIPT_URL, {
     method: 'POST',
-    body: JSON.stringify(formData)
+    mode: 'no-cors',
+    body: new URLSearchParams({ data: JSON.stringify(formData) })
   }).catch(er => {
-    // Error silencioso: la respuesta puede quedar en overflow
     console.error('[ONPE Encuesta] Error al guardar:', er);
   });
 });
