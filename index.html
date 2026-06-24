@@ -199,15 +199,15 @@
   .btn-enviar:hover { background: var(--onpe-red); }
   .btn-enviar:disabled { background: #ccc; cursor: not-allowed; }
   .msg-exito {
-    background: #e8f5e9;
-    border: 2px solid #4caf50;
+    background: #EBF4FF;
+    border: 1px solid #88BFE5;
     border-radius: 10px;
-    padding: 28px;
+    padding: 32px 28px;
     text-align: center;
     display: none;
   }
-  .msg-exito h2 { color: #2e7d32; font-size: 1.3rem; margin-bottom: 8px; }
-  .msg-exito p { color: #444; font-size: 0.95rem; }
+  .msg-exito h2 { color: #003770; font-size: 1.25rem; margin-bottom: 10px; font-weight: 700; }
+  .msg-exito p { color: #333; font-size: 0.95rem; line-height: 1.6; }
   .msg-error {
     background: #EAF2FB;
     border: 1.5px solid var(--onpe-red);
@@ -493,14 +493,12 @@
   </form>
 
   <div class="msg-exito" id="msgExito">
-    <div style="font-size:3rem;margin-bottom:12px">✅</div>
-    <h2>¡Sus respuestas han sido enviadas!</h2>
-    <p style="margin-bottom:14px">Su participación ha sido registrada exitosamente.<br>Su opinión contribuye a mejorar los procesos electorales del Perú.</p>
-    <div style="border-top:1px solid #c3e6cb;padding-top:14px;margin-top:6px;font-size:0.88rem;color:#4a7c59;background:#f0faf3;border-radius:6px;padding:12px 16px;margin-top:14px">
-      <strong>¿Tiene alguna consulta o pregunta?</strong><br>
-      Por favor, realícela <strong>antes de cerrar esta página</strong>.<br>
-      Una vez cerrada, no podrá modificar sus respuestas.
-    </div>
+    <h2>Sus respuestas han sido registradas correctamente.</h2>
+    <p style="margin-bottom:16px">Gracias por participar en esta encuesta.<br>Su opinión contribuye a mejorar los procesos de difusión de la ONPE.</p>
+    <p style="font-size:0.88rem;color:#2971B9;border-top:1px solid #88BFE5;padding-top:14px;margin-top:4px;">
+      Si tiene alguna consulta o pregunta, realícela <strong>antes de cerrar esta página</strong>.<br>
+      Una vez cerrada, no podrá recuperar sus respuestas.
+    </p>
   </div>
 
 <footer class="footer-strip">
@@ -557,7 +555,7 @@ const REGIONES = [
 // ═══════════════════════════════════════════════
 // ► REEMPLAZA ESTA URL con la de tu implementación de Apps Script (doPost)
 // Apps Script → Implementar → Nueva implementación → Aplicación web → Copiar URL
-const APPS_SCRIPT_URL = 'AKfycbz_6TaO6RcIzrSczKWLsBa-BUt4D5IVAeU0q1ssE_kXbLt_mq8bKchMpcncagaW-XoS';
+const APPS_SCRIPT_URL = 'https://script.google.com/a/macros/pucp.pe/s/AKfycbz_6TaO6RcIzrSczKWLsBa-BUt4D5IVAeU0q1ssE_kXbLt_mq8bKchMpcncagaW-XoS/exec';
 
 const selRegion   = document.getElementById('sel-region');
 const selProvincia= document.getElementById('sel-provincia');
