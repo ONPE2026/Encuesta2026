@@ -47,6 +47,9 @@
     display: block;
     margin: 0 auto;
   }
+  @media (max-width: 600px) {
+    .header-banner img { max-width: 100%; }
+  }
   .container {
     max-width: 720px;
     margin: 28px auto 60px;
@@ -294,165 +297,12 @@
 <div class="container">
   <form id="encuesta">
 
-    <!-- ═══════════════════════════════════════
-         BLOQUE 1 — VOTO EN SEGUNDA VUELTA
-    ═══════════════════════════════════════ -->
-    <div class="bloque" id="bloque1">
-      <div class="bloque-titulo">Bloque 1 · Voto en la Segunda Vuelta</div>
-
-      <!-- P1 -->
-      <div class="pregunta" id="p1">
-        <label class="principal"><span class="num">1</span>En esta segunda vuelta, ¿usted votó?</label>
-        <div class="opciones">
-          <label class="opcion"><input type="radio" name="voto" value="Si" required> <span>Sí</span></label>
-          <label class="opcion"><input type="radio" name="voto" value="No"> <span>No</span></label>
-        </div>
-      </div>
-
-      <!-- P2 — visible solo si P1=Sí -->
-      <div class="pregunta hidden" id="p2">
-        <label class="principal"><span class="num">2</span>¿Tuvo algún inconveniente al momento de votar?</label>
-        <div class="opciones">
-          <label class="opcion"><input type="radio" name="inconveniente" value="Si"> <span>Sí</span></label>
-          <label class="opcion"><input type="radio" name="inconveniente" value="No"> <span>No</span></label>
-        </div>
-      </div>
-
-      <!-- P3 — visible solo si P2=Sí -->
-      <div class="pregunta hidden" id="p3">
-        <label class="principal"><span class="num">3</span>¿Qué inconveniente tuvo? <em style="font-weight:400;font-size:0.85rem">(Puede marcar más de una opción)</em></label>
-        <div class="opciones">
-          <label class="opcion"><input type="checkbox" name="inconvenienteTipo" value="No pude ubicar fácilmente mi local de votación"> <span>No pude ubicar fácilmente mi local de votación</span></label>
-          <label class="opcion"><input type="checkbox" name="inconvenienteTipo" value="Cambiaron mi local de votación"> <span>Cambiaron mi local de votación</span></label>
-          <label class="opcion"><input type="checkbox" name="inconvenienteTipo" value="Fue difícil ubicar mi mesa de sufragio"> <span>Fue difícil ubicar mi mesa de sufragio</span></label>
-          <label class="opcion"><input type="checkbox" name="inconvenienteTipo" value="Mi mesa de sufragio demoró en abrir"> <span>Mi mesa de sufragio demoró en abrir</span></label>
-          <label class="opcion"><input type="checkbox" name="inconvenienteTipo" value="No pude votar porque mi mesa de sufragio no abrió"> <span>No pude votar porque mi mesa de sufragio no abrió</span></label>
-          <label class="opcion"><input type="checkbox" name="inconvenienteTipo" value="Otros"> <span>Otros</span></label>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════
-         BLOQUE 2 — EXPOSICIÓN A LA CAMPAÑA
-    ═══════════════════════════════════════ -->
-    <div class="bloque" id="bloque2">
-      <div class="bloque-titulo">Bloque 2 · Exposición a la Campaña</div>
-
-      <!-- P4 -->
-      <div class="pregunta" id="p4">
-        <label class="principal"><span class="num">4</span>En los últimos 30 días, ¿recuerda haberse informado sobre la segunda vuelta?</label>
-        <div class="opciones">
-          <label class="opcion"><input type="radio" name="seInformo" value="Si" required> <span>Sí</span></label>
-          <label class="opcion"><input type="radio" name="seInformo" value="No"> <span>No</span></label>
-        </div>
-      </div>
-
-      <!-- P5 — visible solo si P4=Sí -->
-      <div class="pregunta hidden" id="p5">
-        <label class="principal"><span class="num">5</span>¿En qué medios de comunicación recuerda haber visto, leído o escuchado publicidad acerca de la segunda vuelta? <em style="font-weight:400;font-size:0.85rem">(Puede marcar más de una opción)</em></label>
-        <div class="opciones">
-          <label class="opcion"><input type="checkbox" name="medios" value="Televisión"> <span>Televisión</span></label>
-          <label class="opcion"><input type="checkbox" name="medios" value="Radio"> <span>Radio</span></label>
-          <label class="opcion"><input type="checkbox" name="medios" value="Redes sociales (Facebook/Instagram/TikTok/otros)"> <span>Redes sociales (Facebook / Instagram / TikTok / otros)</span></label>
-          <label class="opcion"><input type="checkbox" name="medios" value="Periódicos"> <span>Periódicos</span></label>
-          <label class="opcion"><input type="checkbox" name="medios" value="Anuncios en la vía pública"> <span>Anuncios en la vía pública</span></label>
-          <label class="opcion"><input type="checkbox" name="medios" value="Publicidad en centros comerciales"> <span>Publicidad en centros comerciales</span></label>
-          <label class="opcion"><input type="checkbox" name="medios" value="Personal de la ONPE"> <span>Personal de la ONPE</span></label>
-          <label class="opcion"><input type="checkbox" name="medios" value="Otros"> <span>Otros</span></label>
-          <label class="opcion"><input type="checkbox" name="medios" value="No recuerdo"> <span>No recuerdo</span></label>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════
-         BLOQUE 3 — EVALUACIÓN DE LA CAMPAÑA
-    ═══════════════════════════════════════ -->
-    <div class="bloque hidden" id="bloque3">
-      <div class="bloque-titulo">Bloque 3 · Evaluación de la Campaña</div>
-
-      <!-- P6 -->
-      <div class="pregunta" id="p6">
-        <label class="principal"><span class="num">6</span>En una escala del 1 al 5, ¿qué tan claro le resultó el mensaje de las campañas de la ONPE?</label>
-        <div class="escala">
-          <div class="escala-item"><input type="radio" id="clar1" name="claridadCampana" value="1 - Nada claro"><label for="clar1"><span class="num-grande">1</span><span>Nada claro</span></label></div>
-          <div class="escala-item"><input type="radio" id="clar2" name="claridadCampana" value="2 - Poco claro"><label for="clar2"><span class="num-grande">2</span><span>Poco claro</span></label></div>
-          <div class="escala-item"><input type="radio" id="clar3" name="claridadCampana" value="3 - Ni claro ni confuso"><label for="clar3"><span class="num-grande">3</span><span>Ni claro ni confuso</span></label></div>
-          <div class="escala-item"><input type="radio" id="clar4" name="claridadCampana" value="4 - Algo claro"><label for="clar4"><span class="num-grande">4</span><span>Algo claro</span></label></div>
-          <div class="escala-item"><input type="radio" id="clar5" name="claridadCampana" value="5 - Muy claro"><label for="clar5"><span class="num-grande">5</span><span>Muy claro</span></label></div>
-        </div>
-      </div>
-
-      <!-- P7 -->
-      <div class="pregunta" id="p7">
-        <label class="principal"><span class="num">7</span>¿Qué recuerda de la campaña? <em style="font-weight:400;font-size:0.85rem">(Puede marcar más de una opción)</em></label>
-        <div class="opciones">
-          <label class="opcion"><input type="checkbox" name="recuerdaCampana" value="La participación de varios actores en las elecciones"> <span>La participación de varios actores (ONPE, policía, fuerzas armadas, miembros de mesa) en las elecciones</span></label>
-          <label class="opcion"><input type="checkbox" name="recuerdaCampana" value="La importancia de ir a votar"> <span>La importancia de ir a votar</span></label>
-          <label class="opcion"><input type="checkbox" name="recuerdaCampana" value="Que la ONPE está presente y al servicio de todos"> <span>Que la ONPE está presente y al servicio de todos en el día de las elecciones</span></label>
-          <label class="opcion"><input type="checkbox" name="recuerdaCampana" value="Nada en particular"> <span>Nada en particular</span></label>
-          <label class="opcion"><input type="checkbox" name="recuerdaCampana" value="Otros"> <span>Otros</span></label>
-        </div>
-      </div>
-
-      <!-- P8 -->
-      <div class="pregunta" id="p8">
-        <label class="principal"><span class="num">8</span>¿Considera que la campaña debería durar más tiempo?</label>
-        <div class="opciones">
-          <label class="opcion"><input type="radio" name="campMasTiempo" value="Si"> <span>Sí</span></label>
-          <label class="opcion"><input type="radio" name="campMasTiempo" value="No"> <span>No</span></label>
-        </div>
-      </div>
-
-      <!-- P9 -->
-      <div class="pregunta" id="p9">
-        <label class="principal"><span class="num">9</span>¿Qué considera usted que la campaña debería transmitir?</label>
-        <textarea name="queTransmitir" placeholder="Escriba su respuesta aquí..."></textarea>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════
-         BLOQUE 4 — IMAGEN INSTITUCIONAL
-    ═══════════════════════════════════════ -->
-    <div class="bloque" id="bloque4">
-      <div class="bloque-titulo">Bloque 4 · Imagen Institucional</div>
-
-      <!-- P10 -->
-      <div class="pregunta" id="p10">
-        <label class="principal"><span class="num">10</span>Luego de la campaña, ¿su opinión sobre la ONPE cambió?</label>
-        <div class="escala">
-          <div class="escala-item"><input type="radio" id="op1" name="opinionONPE" value="1 - Mejoró mucho"><label for="op1"><span class="num-grande">1</span><span>Mejoró mucho</span></label></div>
-          <div class="escala-item"><input type="radio" id="op2" name="opinionONPE" value="2 - Mejoró algo"><label for="op2"><span class="num-grande">2</span><span>Mejoró algo</span></label></div>
-          <div class="escala-item"><input type="radio" id="op3" name="opinionONPE" value="3 - Se mantiene igual"><label for="op3"><span class="num-grande">3</span><span>Se mantiene igual</span></label></div>
-          <div class="escala-item"><input type="radio" id="op4" name="opinionONPE" value="4 - Empeoró algo"><label for="op4"><span class="num-grande">4</span><span>Empeoró algo</span></label></div>
-          <div class="escala-item"><input type="radio" id="op5" name="opinionONPE" value="5 - Empeoró mucho"><label for="op5"><span class="num-grande">5</span><span>Empeoró mucho</span></label></div>
-        </div>
-        <div class="opciones" style="margin-top:10px">
-          <label class="opcion"><input type="radio" name="opinionONPE" value="No tenía opinión previa"> <span>No tenía opinión previa de la ONPE</span></label>
-        </div>
-      </div>
-
-      <!-- P11 -->
-      <div class="pregunta" id="p11">
-        <label class="principal"><span class="num">11</span>¿Cómo calificaría la organización de la segunda vuelta en general?</label>
-        <div class="escala">
-          <div class="escala-item"><input type="radio" id="cal1" name="calificacionOrg" value="1 - Muy mala"><label for="cal1"><span class="num-grande">1</span><span>Muy mala</span></label></div>
-          <div class="escala-item"><input type="radio" id="cal2" name="calificacionOrg" value="2 - Mala"><label for="cal2"><span class="num-grande">2</span><span>Mala</span></label></div>
-          <div class="escala-item"><input type="radio" id="cal3" name="calificacionOrg" value="3 - Ni buena ni mala"><label for="cal3"><span class="num-grande">3</span><span>Ni buena ni mala</span></label></div>
-          <div class="escala-item"><input type="radio" id="cal4" name="calificacionOrg" value="4 - Buena"><label for="cal4"><span class="num-grande">4</span><span>Buena</span></label></div>
-          <div class="escala-item"><input type="radio" id="cal5" name="calificacionOrg" value="5 - Muy buena"><label for="cal5"><span class="num-grande">5</span><span>Muy buena</span></label></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════
-         BLOQUE 5 — SOCIODEMOGRÁFICO
-    ═══════════════════════════════════════ -->
     <div class="bloque" id="bloque5">
-      <div class="bloque-titulo">Bloque 5 · Datos Sociodemográficos</div>
+      <div class="bloque-titulo">Bloque 1 · Datos Sociodemográficos</div>
 
       <!-- P12 -->
       <div class="pregunta" id="p12">
-        <label class="principal"><span class="num">12</span>Indique su grupo etario</label>
+        <label class="principal"><span class="num">1</span>Indique su grupo etario</label>
         <div class="opciones">
           <label class="opcion"><input type="radio" name="grupoEtario" value="18-29" required> <span>De 18 a 29 años</span></label>
           <label class="opcion"><input type="radio" name="grupoEtario" value="30-44"> <span>De 30 a 44 años</span></label>
@@ -463,7 +313,7 @@
 
       <!-- P13 -->
       <div class="pregunta" id="p13">
-        <label class="principal"><span class="num">13</span>Indique su sexo</label>
+        <label class="principal"><span class="num">2</span>Indique su sexo</label>
         <div class="opciones">
           <label class="opcion"><input type="radio" name="sexo" value="Femenino" required> <span>Femenino</span></label>
           <label class="opcion"><input type="radio" name="sexo" value="Masculino"> <span>Masculino</span></label>
@@ -473,7 +323,7 @@
 
       <!-- P14 — Ubicación geográfica -->
       <div class="pregunta" id="p14">
-        <label class="principal"><span class="num">14</span>Indique su región de residencia</label>
+        <label class="principal"><span class="num">3</span>Indique su región de residencia</label>
         <div class="geo-row">
           <div class="geo-group">
             <label for="sel-region">Región</label>
@@ -498,6 +348,168 @@
       </div>
     </div>
 
+
+    <!-- ═══════════════════════════════════════
+         BLOQUE 1 — VOTO EN SEGUNDA VUELTA
+    ═══════════════════════════════════════ -->
+    <div class="bloque" id="bloque1">
+      <div class="bloque-titulo">Bloque 2 · Voto en la Segunda Vuelta</div>
+
+      <!-- P1 -->
+      <div class="pregunta" id="p1">
+        <label class="principal"><span class="num">4</span>En esta segunda vuelta, ¿usted votó?</label>
+        <div class="opciones">
+          <label class="opcion"><input type="radio" name="voto" value="Si" required> <span>Sí</span></label>
+          <label class="opcion"><input type="radio" name="voto" value="No"> <span>No</span></label>
+        </div>
+      </div>
+
+      <!-- P2 — visible solo si P1=Sí -->
+      <div class="pregunta hidden" id="p2">
+        <label class="principal"><span class="num">5</span>¿Tuvo algún inconveniente al momento de votar?</label>
+        <div class="opciones">
+          <label class="opcion"><input type="radio" name="inconveniente" value="Si"> <span>Sí</span></label>
+          <label class="opcion"><input type="radio" name="inconveniente" value="No"> <span>No</span></label>
+        </div>
+      </div>
+
+      <!-- P3 — visible solo si P2=Sí -->
+      <div class="pregunta hidden" id="p3">
+        <label class="principal"><span class="num">6</span>¿Qué inconveniente tuvo? <em style="font-weight:400;font-size:0.85rem">(Puede marcar más de una opción)</em></label>
+        <div class="opciones">
+          <label class="opcion"><input type="checkbox" name="inconvenienteTipo" value="No pude ubicar fácilmente mi local de votación"> <span>No pude ubicar fácilmente mi local de votación</span></label>
+          <label class="opcion"><input type="checkbox" name="inconvenienteTipo" value="Cambiaron mi local de votación"> <span>Cambiaron mi local de votación</span></label>
+          <label class="opcion"><input type="checkbox" name="inconvenienteTipo" value="Fue difícil ubicar mi mesa de sufragio"> <span>Fue difícil ubicar mi mesa de sufragio</span></label>
+          <label class="opcion"><input type="checkbox" name="inconvenienteTipo" value="Mi mesa de sufragio demoró en abrir"> <span>Mi mesa de sufragio demoró en abrir</span></label>
+          <label class="opcion"><input type="checkbox" name="inconvenienteTipo" value="No pude votar porque mi mesa de sufragio no abrió"> <span>No pude votar porque mi mesa de sufragio no abrió</span></label>
+          <label class="opcion"><input type="checkbox" name="inconvenienteTipo" value="Otros"> <span>Otros</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         BLOQUE 2 — EXPOSICIÓN A LA CAMPAÑA
+    ═══════════════════════════════════════ -->
+    <div class="bloque" id="bloque2">
+      <div class="bloque-titulo">Bloque 3 · Exposición a la Campaña</div>
+
+      <!-- P4 -->
+      <div class="pregunta" id="p4">
+        <label class="principal"><span class="num">7</span>En los últimos 30 días, ¿recuerda haberse informado sobre la segunda vuelta?</label>
+        <div class="opciones">
+          <label class="opcion"><input type="radio" name="seInformo" value="Si" required> <span>Sí</span></label>
+          <label class="opcion"><input type="radio" name="seInformo" value="No"> <span>No</span></label>
+        </div>
+      </div>
+
+      <!-- P5 — visible solo si P4=Sí -->
+      <div class="pregunta hidden" id="p5">
+        <label class="principal"><span class="num">8</span>¿En qué medios de comunicación recuerda haber visto, leído o escuchado publicidad acerca de la segunda vuelta? <em style="font-weight:400;font-size:0.85rem">(Puede marcar más de una opción)</em></label>
+        <div class="opciones">
+          <label class="opcion"><input type="checkbox" name="medios" value="Televisión"> <span>Televisión</span></label>
+          <label class="opcion"><input type="checkbox" name="medios" value="Radio"> <span>Radio</span></label>
+          <label class="opcion"><input type="checkbox" name="medios" value="Redes sociales (Facebook/Instagram/TikTok/otros)"> <span>Redes sociales (Facebook / Instagram / TikTok / otros)</span></label>
+          <label class="opcion"><input type="checkbox" name="medios" value="Periódicos"> <span>Periódicos</span></label>
+          <label class="opcion"><input type="checkbox" name="medios" value="Anuncios en la vía pública"> <span>Anuncios en la vía pública</span></label>
+          <label class="opcion"><input type="checkbox" name="medios" value="Publicidad en centros comerciales"> <span>Publicidad en centros comerciales</span></label>
+          <label class="opcion"><input type="checkbox" name="medios" value="Personal de la ONPE"> <span>Personal de la ONPE</span></label>
+          <label class="opcion"><input type="checkbox" name="medios" value="Otros"> <span>Otros</span></label>
+          <label class="opcion"><input type="checkbox" name="medios" value="No recuerdo"> <span>No recuerdo</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         BLOQUE 3 — EVALUACIÓN DE LA CAMPAÑA
+    ═══════════════════════════════════════ -->
+    <div class="bloque hidden" id="bloque3">
+      <div class="bloque-titulo">Bloque 4 · Evaluación de la Campaña</div>
+
+      <!-- P6 -->
+      <div class="pregunta" id="p6">
+        <label class="principal"><span class="num">9</span>En una escala del 1 al 5, ¿qué tan claro le resultó el mensaje de las campañas de la ONPE?</label>
+        <div class="escala">
+          <div class="escala-item"><input type="radio" id="clar1" name="claridadCampana" value="1 - Nada claro"><label for="clar1"><span class="num-grande">1</span><span>Nada claro</span></label></div>
+          <div class="escala-item"><input type="radio" id="clar2" name="claridadCampana" value="2 - Poco claro"><label for="clar2"><span class="num-grande">2</span><span>Poco claro</span></label></div>
+          <div class="escala-item"><input type="radio" id="clar3" name="claridadCampana" value="3 - Ni claro ni confuso"><label for="clar3"><span class="num-grande">3</span><span>Ni claro ni confuso</span></label></div>
+          <div class="escala-item"><input type="radio" id="clar4" name="claridadCampana" value="4 - Algo claro"><label for="clar4"><span class="num-grande">4</span><span>Algo claro</span></label></div>
+          <div class="escala-item"><input type="radio" id="clar5" name="claridadCampana" value="5 - Muy claro"><label for="clar5"><span class="num-grande">5</span><span>Muy claro</span></label></div>
+        </div>
+      </div>
+
+      <!-- P7 -->
+      <div class="pregunta" id="p7">
+        <label class="principal"><span class="num">10</span>¿Qué recuerda de la campaña? <em style="font-weight:400;font-size:0.85rem">(Puede marcar más de una opción)</em></label>
+        <div class="opciones">
+          <label class="opcion"><input type="checkbox" name="recuerdaCampana" value="La participación de varios actores en las elecciones"> <span>La participación de varios actores (ONPE, policía, fuerzas armadas, miembros de mesa) en las elecciones</span></label>
+          <label class="opcion"><input type="checkbox" name="recuerdaCampana" value="La importancia de ir a votar"> <span>La importancia de ir a votar</span></label>
+          <label class="opcion"><input type="checkbox" name="recuerdaCampana" value="Que la ONPE está presente y al servicio de todos"> <span>Que la ONPE está presente y al servicio de todos en el día de las elecciones</span></label>
+          <label class="opcion"><input type="checkbox" name="recuerdaCampana" value="Cómo capacitarme como elector o miembro de mesa"> <span>Cómo capacitarme, como elector o miembro de mesa, así como su importancia</span></label>
+          <label class="opcion"><input type="checkbox" name="recuerdaCampana" value="Nada en particular"> <span>Nada en particular</span></label>
+          <label class="opcion"><input type="checkbox" name="recuerdaCampana" value="Otros"> <span>Otros</span></label>
+        </div>
+      </div>
+
+      <!-- P8 -->
+      <div class="pregunta" id="p8">
+        <label class="principal"><span class="num">11</span>¿Considera que la campaña debería durar más tiempo?</label>
+        <div class="opciones">
+          <label class="opcion"><input type="radio" name="campMasTiempo" value="Si"> <span>Sí</span></label>
+          <label class="opcion"><input type="radio" name="campMasTiempo" value="No"> <span>No</span></label>
+        </div>
+      </div>
+
+      <!-- P9 -->
+      <div class="pregunta" id="p9">
+        <label class="principal"><span class="num">12</span>¿En qué considera usted que la campaña debería enfocarse? <em>(Puede marcar más de una opción)</em></label>
+        <div class="opciones">
+          <label class="opcion"><input type="checkbox" name="queTransmitir" value="Informar sobre la importancia de ir a votar"> <span>Informar sobre la importancia de ir a votar</span></label>
+          <label class="opcion"><input type="checkbox" name="queTransmitir" value="Informar sobre cómo votar correctamente"> <span>Informar sobre cómo votar correctamente</span></label>
+          <label class="opcion"><input type="checkbox" name="queTransmitir" value="Informar sobre el trabajo de la ONPE en las elecciones"> <span>Informar sobre el trabajo de la ONPE en las elecciones</span></label>
+          <label class="opcion"><input type="checkbox" name="queTransmitir" value="Informar sobre cómo capacitarse como elector o miembro de mesa"> <span>Informar sobre cómo capacitarse, ya sea como elector o miembro de mesa</span></label>
+          <label class="opcion"><input type="checkbox" name="queTransmitir" value="Informar sobre cómo saber si uno es miembro de mesa"> <span>Informar sobre cómo saber si uno es miembro de mesa</span></label>
+          <label class="opcion"><input type="checkbox" name="queTransmitir" value="Otros"> <span>Otros</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         BLOQUE 4 — IMAGEN INSTITUCIONAL
+    ═══════════════════════════════════════ -->
+    <div class="bloque" id="bloque4">
+      <div class="bloque-titulo">Bloque 5 · Imagen Institucional</div>
+
+      <!-- P10 -->
+      <div class="pregunta" id="p10">
+        <label class="principal"><span class="num">13</span>Luego de la campaña, ¿su opinión sobre la ONPE cambió?</label>
+        <div class="escala">
+          <div class="escala-item"><input type="radio" id="op1" name="opinionONPE" value="1 - Mejoró mucho"><label for="op1"><span class="num-grande">1</span><span>Mejoró mucho</span></label></div>
+          <div class="escala-item"><input type="radio" id="op2" name="opinionONPE" value="2 - Mejoró algo"><label for="op2"><span class="num-grande">2</span><span>Mejoró algo</span></label></div>
+          <div class="escala-item"><input type="radio" id="op3" name="opinionONPE" value="3 - Se mantiene igual"><label for="op3"><span class="num-grande">3</span><span>Se mantiene igual</span></label></div>
+          <div class="escala-item"><input type="radio" id="op4" name="opinionONPE" value="4 - Empeoró algo"><label for="op4"><span class="num-grande">4</span><span>Empeoró algo</span></label></div>
+          <div class="escala-item"><input type="radio" id="op5" name="opinionONPE" value="5 - Empeoró mucho"><label for="op5"><span class="num-grande">5</span><span>Empeoró mucho</span></label></div>
+        </div>
+        <div class="opciones" style="margin-top:10px">
+          <label class="opcion"><input type="radio" name="opinionONPE" value="No tenía opinión previa"> <span>No tenía opinión previa de la ONPE</span></label>
+        </div>
+      </div>
+
+      <!-- P11 -->
+      <div class="pregunta" id="p11">
+        <label class="principal"><span class="num">14</span>¿Cómo calificaría la organización de la segunda vuelta en general?</label>
+        <div class="escala">
+          <div class="escala-item"><input type="radio" id="cal1" name="calificacionOrg" value="1 - Muy mala"><label for="cal1"><span class="num-grande">1</span><span>Muy mala</span></label></div>
+          <div class="escala-item"><input type="radio" id="cal2" name="calificacionOrg" value="2 - Mala"><label for="cal2"><span class="num-grande">2</span><span>Mala</span></label></div>
+          <div class="escala-item"><input type="radio" id="cal3" name="calificacionOrg" value="3 - Regular"><label for="cal3"><span class="num-grande">3</span><span>Regular</span></label></div>
+          <div class="escala-item"><input type="radio" id="cal4" name="calificacionOrg" value="4 - Buena"><label for="cal4"><span class="num-grande">4</span><span>Buena</span></label></div>
+          <div class="escala-item"><input type="radio" id="cal5" name="calificacionOrg" value="5 - Muy buena"><label for="cal5"><span class="num-grande">5</span><span>Muy buena</span></label></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         BLOQUE 5 — SOCIODEMOGRÁFICO
+    ═══════════════════════════════════════ -->
     <div class="msg-error" id="msgError">Por favor complete todos los campos obligatorios.</div>
 
     <div class="aviso-privacidad">
@@ -577,7 +589,7 @@ const FECHA_CIERRE = new Date('2026-07-16T04:59:00Z'); // 15 jul 2026 11:59 PM P
 
 // #AQUI SE RESETEAN LAS VERSIONES PARA VOLVER A INTENTAR ENVIAR
 // Cambia 'v1' a 'v2', 'v3', etc. para permitir que dispositivos que ya respondieron vuelvan a intentarlo
-const STORAGE_KEY = 'onpe_sv2026_v1';
+const STORAGE_KEY = 'onpe_sv2026_v2';
 
 // ── Verificar cierre ──
 if (new Date() > FECHA_CIERRE) {
@@ -593,7 +605,7 @@ if (localStorage.getItem(STORAGE_KEY)) {
   document.querySelector('header').style.display          = 'none';
 }
 
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRDobHbbxvd3-OuDMTCHvSd8Jls-01p_y96zFpknx7woPuglzJc4zDNJwlSykpfGVo/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby-NCyCbK2iaDSCWCYaVz873LldICByzKDkADWSsgvTR4XyKxQfW-wurPho9QPdYBWL/exec';
 
 const selRegion   = document.getElementById('sel-region');
 const selProvincia= document.getElementById('sel-provincia');
@@ -695,7 +707,7 @@ document.querySelectorAll('input[name="seInformo"]').forEach(r => r.addEventList
     document.querySelectorAll('input[name="recuerdaCampana"]').forEach(x=>x.checked=false);
     document.querySelectorAll('input[name="claridadCampana"]').forEach(x=>x.checked=false);
     document.querySelectorAll('input[name="campMasTiempo"]').forEach(x=>x.checked=false);
-    document.querySelector('textarea[name="queTransmitir"]').value='';
+    document.querySelectorAll('input[name="queTransmitir"]').forEach(x=>x.checked=false);
   }
 }));
 
@@ -731,24 +743,26 @@ document.getElementById('encuesta').addEventListener('submit', function(e){
   function visible(id){ const el=document.getElementById(id); return el && !el.classList.contains('hidden'); }
   function showErr(msg){ err.textContent=msg; err.style.display='block'; window.scrollTo({top:err.offsetTop-20,behavior:'smooth'}); }
 
-  if (!radio('voto'))       { showErr('Por favor responda la pregunta 1.'); return; }
+  if (!radio('voto'))       { showErr('Por favor responda la pregunta 13.'); return; }
   if (visible('p2') && !radio('inconveniente'))
-                            { showErr('Por favor responda la pregunta 2.'); return; }
+                            { showErr('Por favor responda la pregunta 14.'); return; }
   if (visible('p3') && !document.querySelector('input[name="inconvenienteTipo"]:checked'))
-                            { showErr('Por favor responda la pregunta 3.'); return; }
-  if (!radio('seInformo'))  { showErr('Por favor responda la pregunta 4.'); return; }
+                            { showErr('Por favor responda la pregunta 9.'); return; }
+  if (!radio('seInformo'))  { showErr('Por favor responda la pregunta 13.'); return; }
   if (visible('p5') && !document.querySelector('input[name="medios"]:checked'))
-                            { showErr('Por favor responda la pregunta 5.'); return; }
+                            { showErr('Por favor responda la pregunta 14.'); return; }
   if (visible('bloque3')) {
-    if (!radio('claridadCampana'))  { showErr('Por favor responda la pregunta 6.'); return; }
+    if (!radio('claridadCampana'))  { showErr('Por favor responda la pregunta 9.'); return; }
     if (!document.querySelector('input[name="recuerdaCampana"]:checked'))
-                                    { showErr('Por favor responda la pregunta 7.'); return; }
-    if (!radio('campMasTiempo'))    { showErr('Por favor responda la pregunta 8.'); return; }
+                                    { showErr('Por favor responda la pregunta 13.'); return; }
+    if (!document.querySelector('input[name="queTransmitir"]:checked'))
+                                    { showErr('Por favor responda la pregunta 12.'); return; }
+    if (!radio('campMasTiempo'))    { showErr('Por favor responda la pregunta 14.'); return; }
   }
-  if (!radio('opinionONPE'))    { showErr('Por favor responda la pregunta 10.'); return; }
-  if (!radio('calificacionOrg')){ showErr('Por favor responda la pregunta 11.'); return; }
-  if (!radio('grupoEtario'))    { showErr('Por favor indique su grupo etario (pregunta 12).'); return; }
-  if (!radio('sexo'))           { showErr('Por favor indique su sexo (pregunta 13).'); return; }
+  if (!radio('opinionONPE'))    { showErr('Por favor responda la pregunta 13.'); return; }
+  if (!radio('calificacionOrg')){ showErr('Por favor responda la pregunta 14.'); return; }
+  if (!radio('grupoEtario'))    { showErr('Por favor indique su grupo etario (pregunta 1).'); return; }
+  if (!radio('sexo'))           { showErr('Por favor indique su sexo (pregunta 2).'); return; }
   const esExtranjeroVal = (selRegion.options[selRegion.selectedIndex]?.text === 'EXTRANJERO');
   if (!selRegion.value){ showErr('Por favor indique su región.'); return; }
   if (!esExtranjeroVal && (!selProvincia.value || !selDistrito.value)){
@@ -766,7 +780,7 @@ document.getElementById('encuesta').addEventListener('submit', function(e){
     claridadCampana:   radio('claridadCampana')?.value || '',
     recuerdaCampana:   getChecks('recuerdaCampana'),
     campMasTiempo:     radio('campMasTiempo')?.value || '',
-    queTransmitir:     document.querySelector('textarea[name="queTransmitir"]')?.value || '',
+    queTransmitir:     getChecks('queTransmitir'),
     opinionONPE:       radio('opinionONPE')?.value || '',
     calificacionOrg:   radio('calificacionOrg')?.value || '',
     grupoEtario:       radio('grupoEtario')?.value || '',
