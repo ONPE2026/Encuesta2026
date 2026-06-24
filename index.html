@@ -287,7 +287,7 @@
 </div>
 
 <header>
-  <div class="header-titulo">Encuesta de Evaluación · Segunda Vuelta 2026</div>
+  <div class="header-titulo">Encuesta sobre la campaña informativa - Segunda Elección Presidencial 2026</div>
   <div class="header-subtitulo">ONPE — Oficina Nacional de Procesos Electorales</div>
   <div class="header-banner">
     <img src="banner.jpg" alt="ONPE — Encuesta Segunda Vuelta 2026">
@@ -364,8 +364,16 @@
         </div>
       </div>
 
-      <!-- P2 — visible solo si P1=Sí -->
-      <div class="pregunta hidden" id="p2">
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         BLOQUE INCONVENIENTES
+    ═══════════════════════════════════════ -->
+    <div class="bloque" id="bloqueInconvenientes">
+      <div class="bloque-titulo">Bloque 3 · Inconvenientes durante la Segunda Elección Presidencial 2026</div>
+
+      <!-- P2 -->
+      <div class="pregunta" id="p2">
         <label class="principal"><span class="num">5</span>¿Tuvo algún inconveniente al momento de votar?</label>
         <div class="opciones">
           <label class="opcion"><input type="radio" name="inconveniente" value="Si"> <span>Sí</span></label>
@@ -388,10 +396,10 @@
     </div>
 
     <!-- ═══════════════════════════════════════
-         BLOQUE 2 — EXPOSICIÓN A LA CAMPAÑA
+         BLOQUE 3 — EXPOSICIÓN A LA CAMPAÑA
     ═══════════════════════════════════════ -->
     <div class="bloque" id="bloque2">
-      <div class="bloque-titulo">Bloque 3 · Exposición a la Campaña</div>
+      <div class="bloque-titulo">Bloque 4 · Exposición a la campaña informativa de la ONPE</div>
 
       <!-- P4 -->
       <div class="pregunta" id="p4">
@@ -413,6 +421,7 @@
           <label class="opcion"><input type="checkbox" name="medios" value="Anuncios en la vía pública"> <span>Anuncios en la vía pública</span></label>
           <label class="opcion"><input type="checkbox" name="medios" value="Publicidad en centros comerciales"> <span>Publicidad en centros comerciales</span></label>
           <label class="opcion"><input type="checkbox" name="medios" value="Personal de la ONPE"> <span>Personal de la ONPE</span></label>
+          <label class="opcion"><input type="checkbox" name="medios" value="Publicidad en el aeropuerto"> <span>Publicidad en el aeropuerto</span></label>
           <label class="opcion"><input type="checkbox" name="medios" value="Otros"> <span>Otros</span></label>
           <label class="opcion"><input type="checkbox" name="medios" value="No recuerdo"> <span>No recuerdo</span></label>
         </div>
@@ -423,11 +432,11 @@
          BLOQUE 3 — EVALUACIÓN DE LA CAMPAÑA
     ═══════════════════════════════════════ -->
     <div class="bloque hidden" id="bloque3">
-      <div class="bloque-titulo">Bloque 4 · Evaluación de la Campaña</div>
+      <div class="bloque-titulo">Bloque 5 · Evaluación de la campaña informativa de la ONPE</div>
 
       <!-- P6 -->
       <div class="pregunta" id="p6">
-        <label class="principal"><span class="num">9</span>En una escala del 1 al 5, ¿qué tan claro le resultó el mensaje de las campañas de la ONPE?</label>
+        <label class="principal"><span class="num">9</span>En una escala del 1 al 5, ¿qué tan claro le resultó el mensaje de las campañas informativas de la ONPE?</label>
         <div class="escala">
           <div class="escala-item"><input type="radio" id="clar1" name="claridadCampana" value="1 - Nada claro"><label for="clar1"><span class="num-grande">1</span><span>Nada claro</span></label></div>
           <div class="escala-item"><input type="radio" id="clar2" name="claridadCampana" value="2 - Poco claro"><label for="clar2"><span class="num-grande">2</span><span>Poco claro</span></label></div>
@@ -439,12 +448,13 @@
 
       <!-- P7 -->
       <div class="pregunta" id="p7">
-        <label class="principal"><span class="num">10</span>¿Qué recuerda de la campaña? <em style="font-weight:400;font-size:0.85rem">(Puede marcar más de una opción)</em></label>
+        <label class="principal"><span class="num">10</span>¿Qué recuerda de la campaña informativa de la ONPE? <em style="font-weight:400;font-size:0.85rem">(Puede marcar más de una opción)</em></label>
         <div class="opciones">
           <label class="opcion"><input type="checkbox" name="recuerdaCampana" value="La participación de varios actores en las elecciones"> <span>La participación de varios actores (ONPE, policía, fuerzas armadas, miembros de mesa) en las elecciones</span></label>
           <label class="opcion"><input type="checkbox" name="recuerdaCampana" value="La importancia de ir a votar"> <span>La importancia de ir a votar</span></label>
           <label class="opcion"><input type="checkbox" name="recuerdaCampana" value="Que la ONPE está presente y al servicio de todos"> <span>Que la ONPE está presente y al servicio de todos en el día de las elecciones</span></label>
           <label class="opcion"><input type="checkbox" name="recuerdaCampana" value="Cómo capacitarme como elector o miembro de mesa"> <span>Cómo capacitarme, como elector o miembro de mesa, así como su importancia</span></label>
+          <label class="opcion"><input type="checkbox" name="recuerdaCampana" value="Como consultar mi local de votación"> <span>Como consultar mi local de votación</span></label>
           <label class="opcion"><input type="checkbox" name="recuerdaCampana" value="Nada en particular"> <span>Nada en particular</span></label>
           <label class="opcion"><input type="checkbox" name="recuerdaCampana" value="Otros"> <span>Otros</span></label>
         </div>
@@ -452,7 +462,7 @@
 
       <!-- P8 -->
       <div class="pregunta" id="p8">
-        <label class="principal"><span class="num">11</span>¿Considera que la campaña debería durar más tiempo?</label>
+        <label class="principal"><span class="num">11</span>¿Considera que la campaña informativa de la ONPE debería durar más tiempo?</label>
         <div class="opciones">
           <label class="opcion"><input type="radio" name="campMasTiempo" value="Si"> <span>Sí</span></label>
           <label class="opcion"><input type="radio" name="campMasTiempo" value="No"> <span>No</span></label>
@@ -461,7 +471,7 @@
 
       <!-- P9 -->
       <div class="pregunta" id="p9">
-        <label class="principal"><span class="num">12</span>¿En qué considera usted que la campaña debería enfocarse? <em>(Puede marcar más de una opción)</em></label>
+        <label class="principal"><span class="num">12</span>¿En qué considera usted que la campaña informativa de la ONPE debería enfocarse? <em>(Puede marcar más de una opción)</em></label>
         <div class="opciones">
           <label class="opcion"><input type="checkbox" name="queTransmitir" value="Informar sobre la importancia de ir a votar"> <span>Informar sobre la importancia de ir a votar</span></label>
           <label class="opcion"><input type="checkbox" name="queTransmitir" value="Informar sobre cómo votar correctamente"> <span>Informar sobre cómo votar correctamente</span></label>
@@ -477,11 +487,11 @@
          BLOQUE 4 — IMAGEN INSTITUCIONAL
     ═══════════════════════════════════════ -->
     <div class="bloque" id="bloque4">
-      <div class="bloque-titulo">Bloque 5 · Imagen Institucional</div>
+      <div class="bloque-titulo">Bloque 6 · Imagen Institucional</div>
 
       <!-- P10 -->
       <div class="pregunta" id="p10">
-        <label class="principal"><span class="num">13</span>Luego de la campaña, ¿su opinión sobre la ONPE cambió?</label>
+        <label class="principal"><span class="num">13</span>Luego de la campaña informativa, ¿su opinión sobre la ONPE cambió?</label>
         <div class="escala">
           <div class="escala-item"><input type="radio" id="op1" name="opinionONPE" value="1 - Mejoró mucho"><label for="op1"><span class="num-grande">1</span><span>Mejoró mucho</span></label></div>
           <div class="escala-item"><input type="radio" id="op2" name="opinionONPE" value="2 - Mejoró algo"><label for="op2"><span class="num-grande">2</span><span>Mejoró algo</span></label></div>
@@ -527,7 +537,7 @@
 
 <footer class="footer-strip">
   <div class="footer-contacto">
-    Para cualquier duda o consulta comuníquese a la línea gratuita: <a href="tel:417 - 0330">417 - 0330</a>
+    Para cualquier duda o consulta comuníquese a la línea gratuita: <a href="tel:417 - 0360">417 - 0360</a>
     &nbsp;·&nbsp; o al correo <a href="mailto:informes@onpe.gob.pe">informes@onpe.gob.pe</a>
   </div>
   <!-- <div class="footer-legal">
@@ -683,13 +693,7 @@ selDistrito.addEventListener('change', () => {
 function radio(name){ return document.querySelector(`input[name="${name}"]:checked`); }
 
 document.querySelectorAll('input[name="voto"]').forEach(r => r.addEventListener('change', () => {
-  const voto = radio('voto')?.value;
-  document.getElementById('p2').classList.toggle('hidden', voto !== 'Si');
-  document.getElementById('p3').classList.toggle('hidden', true);
-  if (voto !== 'Si') {
-    document.querySelectorAll('input[name="inconveniente"]').forEach(x=>x.checked=false);
-    document.querySelectorAll('input[name="inconvenienteTipo"]').forEach(x=>x.checked=false);
-  }
+  // P2 y P3 siempre visibles (bloque independiente sin filtro)
 }));
 
 document.querySelectorAll('input[name="inconveniente"]').forEach(r => r.addEventListener('change', () => {
